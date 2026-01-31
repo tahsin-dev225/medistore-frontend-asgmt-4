@@ -17,6 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 import { useForm } from "@tanstack/react-form";
+import Link from "next/link";
 import { useState } from "react";
 import { toast } from "sonner";
 import * as z from "zod";
@@ -43,6 +44,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
     },
     onSubmit: async ({ value }) => {
       const toastId = toast.loading("Creating User.");
+      console.log(value);
       try {
         const { data, error } = await authClient.signUp.email(value);
 
@@ -190,6 +192,12 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
         >
           Register
         </Button>
+        <h1>
+          Already have a account?{" "}
+          <Link href={"/login"} className="text-sky-500">
+            Login
+          </Link>
+        </h1>
       </CardFooter>
       <div className="absolute -z-20 top-48 left-0 size-44 rounded-full blur-3xl bg-green-200"></div>
       <div className="absolute z-20 top-60 right-10 size-44 rounded-full blur-3xl bg-green-200"></div>

@@ -11,6 +11,7 @@ export const proxy =async (request : NextRequest) =>{
   let isAdmin = false;
 
   const {data } = await userService.getSession();
+  console.log('session',data);
 
   if(data){
     isAUthenticated = true;

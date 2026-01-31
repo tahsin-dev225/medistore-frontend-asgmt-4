@@ -5,5 +5,5 @@ console.log(process.env.BACKEND_URL,'kahy');
 
 export const authClient = createAuthClient({
     /** The base URL of the server (optional if you're using the same domain) */
-    baseURL: process.env.BACKEND_URL
+    baseURL: "http://localhost:5000"
 })
