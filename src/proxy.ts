@@ -9,6 +9,7 @@ export const proxy =async (request : NextRequest) =>{
 
   let isAUthenticated = false;
   let isAdmin = false;
+  let isSeller = false;
 
   const {data } = await userService.getSession();
   console.log('session',data);
@@ -16,6 +17,7 @@ export const proxy =async (request : NextRequest) =>{
   if(data){
     isAUthenticated = true;
     isAdmin = data.user.role === Roles.admin;
+    isSeller = data.user.role === Roles.seller;
   }
 
   if(!isAUthenticated){
@@ -24,6 +26,10 @@ export const proxy =async (request : NextRequest) =>{
 
   if(isAdmin &&  pathName.startsWith("/dashboard")){
     return NextResponse.redirect(new URL("/admin-dashboard", request.url))
+  }
+
+  if(isSeller &&  pathName.startsWith("/dashboard")){
+    return NextResponse.redirect(new URL("/seller-dashboard", request.url))
   }
 
   if(!isAdmin &&  pathName.startsWith("/admin-dashboard")){
@@ -37,7 +43,8 @@ export const proxy =async (request : NextRequest) =>{
 
 export const config = {
   matcher : [
-    "/dashboard",// "/dashboard/:path*", 
-    // "/admin-dashboard", "/admin-dashboard/:path*",
+    "/dashboard","/dashboard/:path*", 
+    "/seller-dashboard", "/seller-dashboard/:path*",
+    "/admin-dashboard", "/admin-dashboard/:path*",
   ]
 }
