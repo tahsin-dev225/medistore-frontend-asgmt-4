@@ -1,8 +1,6 @@
-import React from "react";
-
 const SellerDashPage = () => {
   return (
-    <div>
+    <div className="h-screen bg-amber-400 w-full">
       <h1>Seller pagee</h1>
     </div>
   );

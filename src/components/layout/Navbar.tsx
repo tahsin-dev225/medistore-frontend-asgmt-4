@@ -1,11 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Menu, X, ShoppingCart, User, UserRoundPlus } from "lucide-react";
+import { getUsers } from "@/actions/user.action";
+import { logOutUser } from "@/actions/logout.action";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState<{ message: string } | null>(null);
+
+  console.log("user", user);
+
+  useEffect(() => {
+    (async () => {
+      const { data, error } = await getUsers();
+      setUser(data);
+      setError(error);
+    })();
+  }, []);
 
   return (
     <header className="w-full max-w-[1500px] border-b bg-white">
@@ -57,6 +71,14 @@ export default function Navbar() {
             >
               <User className=" cursor-pointer hover:text-emerald-500" />
             </Link>
+            <button
+              className="px-3 py-1.5 rounded-2xl border "
+              onClick={() => {
+                logOutUser();
+              }}
+            >
+              Log out
+            </button>
           </div>
           {/* MOBILE MENU BUTTON */}
           <button

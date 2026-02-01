@@ -16,10 +16,12 @@ import {
 
 export default function DashboardLayout({
   admin,
-  user,
+  customer,
+  seller,
 }: {
   admin: React.ReactNode;
-  user: React.ReactNode;
+  customer: React.ReactNode;
+  seller: React.ReactNode;
 }) {
   const userInfo = {
     role: "user",
@@ -35,22 +37,11 @@ export default function DashboardLayout({
             orientation="vertical"
             className="mr-2 data-[orientation=vertical]:h-4"
           />
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="#">
-                  Building Your Application
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator className="hidden md:block" />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4">
-          {userInfo.role === "admin" ? admin : user}
+          {userInfo.role === "admin" && admin}
+          {userInfo.role === "customer" && customer}
+          {userInfo.role === "seller" && seller}
         </div>
       </SidebarInset>
     </SidebarProvider>
