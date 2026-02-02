@@ -26,13 +26,13 @@ export function AppSidebar({
   let routes: Route[] = [];
 
   switch (user.role) {
-    case "admin":
+    case "ADMIN":
       routes = AdminRoute;
       break;
-    case "customer":
+    case "CUSTOMER":
       routes = CustomerRoute;
       break;
-    case "seller":
+    case "SELLER":
       routes = SellerRoute;
       break;
 
@@ -44,6 +44,14 @@ export function AppSidebar({
   return (
     <Sidebar {...props}>
       <SidebarContent>
+        <Link href="/" className="flex py-3.5 px-2.5 items-center gap-2">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-white font-bold">
+            +
+          </span>
+          <span className="text-xl font-bold text-gray-900">
+            Med<span className="text-emerald-500">store</span>
+          </span>
+        </Link>
         {/* We create a SidebarGroup for each parent. */}
         {routes.map((item) => (
           <SidebarGroup key={item.title}>

@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 import { useForm } from "@tanstack/react-form";
 import Link from "next/link";
+import { NextResponse } from "next/server";
 import { useState } from "react";
 import { toast } from "sonner";
 import * as z from "zod";
@@ -38,7 +39,7 @@ export function LoginForm({ ...props }: React.ComponentProps<typeof Card>) {
     },
     onSubmit: async ({ value }) => {
       const toastId = toast.loading("Login in.....");
-      console.log(value);
+      // console.log(value);
       try {
         const { data, error } = await authClient.signIn.email(value);
 
@@ -47,7 +48,9 @@ export function LoginForm({ ...props }: React.ComponentProps<typeof Card>) {
           return;
         }
 
-        return toast.success("Login in successful.");
+        toast.success("Login in successful.", { id: toastId });
+        form.reset();
+        return NextResponse.redirect(new URL("/"));
       } catch (err) {
         return toast.error("Someting went wrong, Error in login catch.", {
           id: toastId,

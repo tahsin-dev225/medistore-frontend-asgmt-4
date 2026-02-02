@@ -16,7 +16,7 @@ export default function Navbar() {
   useEffect(() => {
     (async () => {
       const { data, error } = await getUsers();
-      setUser(data);
+      setUser(data.user);
       setError(error);
     })();
   }, []);
@@ -31,7 +31,7 @@ export default function Navbar() {
               +
             </span>
             <span className="text-xl font-bold text-gray-900">
-              Med<span className="text-emerald-500">shop</span>
+              Med<span className="text-emerald-500">store</span>
             </span>
           </Link>
 
@@ -46,31 +46,34 @@ export default function Navbar() {
             <Link href="/medicine" className="hover:text-emerald-500">
               Shop Medicine
             </Link>
-            {
-              // user &&
+            {user && (
               <Link href="/dashboard" className="hover:text-emerald-500">
                 Dashboard
               </Link>
-            }
+            )}
           </nav>
 
           {/* RIGHT ICONS */}
           <div className="hidden md:flex h-8 items-center gap-5 text-gray-600">
-            <Link href={"/profile"}>
+            {user ? (
+              <Link
+                className="px-1.5 size-8 flex  border border-black/50 rounded-full justify-center items-center"
+                href={"/profile"}
+              >
+                <User className=" cursor-pointer hover:text-emerald-500" />
+              </Link>
+            ) : (
+              <Link
+                className="px-1.5 size-8 flex  border border-black/50 rounded-full justify-center items-center"
+                href={"/login"}
+              >
+                <UserRoundPlus className=" cursor-pointer hover:text-emerald-500" />
+              </Link>
+            )}
+            <Link href={"/cart"}>
               <ShoppingCart className="w-5 h-5 cursor-pointer hover:text-emerald-500" />
             </Link>
-            <Link
-              className="px-1.5 size-8 flex  border border-black/50 rounded-full justify-center items-center"
-              href={"/login"}
-            >
-              <UserRoundPlus className=" cursor-pointer hover:text-emerald-500" />
-            </Link>
-            <Link
-              className="px-1.5 size-8 flex  border border-black/50 rounded-full justify-center items-center"
-              href={"/cart"}
-            >
-              <User className=" cursor-pointer hover:text-emerald-500" />
-            </Link>
+
             <button
               className="px-3 py-1.5 rounded-2xl border "
               onClick={() => {

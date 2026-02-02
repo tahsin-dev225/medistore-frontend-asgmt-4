@@ -1,8 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HomeBanner() {
   return (
-    <section className="relative lg:max-w-[1000px] xl:max-w-[1280px]  overflow-hidden">
+    <section className="relative  lg:max-w-[1000px] xl:max-w-[1280px]  overflow-hidden">
       <div className=" mx-aut px-2.5 sm:px-3 md:px-4 lg:px-6 py-3 md:py-12 lg:py-20">
         <div className="flex flex-col-reverse sm:flex-row items-center gap-10">
           {/* LEFT CONTENT */}
@@ -18,9 +19,12 @@ export default function HomeBanner() {
               And Fast Home Delivery
             </p>
 
-            <button className="mt-8 inline-flex items-center rounded-md bg-green-500 px-6 py-3 text-white font-semibold hover:bg-green-600 transition">
+            <Link
+              href={"/medicine"}
+              className="mt-8 inline-flex items-center rounded-md bg-amber-500 px-6 py-2 text-white font-semibold hover:bg-green-600 transition"
+            >
               Buy Now
-            </button>
+            </Link>
           </div>
 
           {/* RIGHT IMAGE */}

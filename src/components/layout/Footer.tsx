@@ -13,7 +13,7 @@ export default function Footer() {
                 +
               </span>
               <span className="text-xl font-bold text-white">
-                Med<span className="text-emerald-500">shop</span>
+                Med<span className="text-emerald-500">store</span>
               </span>
             </Link>
 
