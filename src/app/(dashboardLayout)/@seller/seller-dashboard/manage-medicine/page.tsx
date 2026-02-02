@@ -1,6 +1,7 @@
 "use client";
 
 import { CLIENT_BACKEND_URL } from "@/components/layout/home-category";
+import { sellerMedicineService } from "@/components/service/seller-medicine.service";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -19,6 +20,7 @@ export interface Medicine {
 export default function ManageStock() {
   const [medicines, setMedicines] = useState<Medicine[]>([]);
   const [stockMap, setStockMap] = useState<Record<string, number>>({});
+  const [relaod, setReload] = useState<number>(0);
 
   console.log(medicines);
 
@@ -44,6 +46,7 @@ export default function ManageStock() {
       if (!res.ok) throw new Error();
 
       toast.success("Stock updated", { id: toastId });
+      setReload(relaod + 1);
     } catch {
       toast.error("Failed to update stock", { id: toastId });
     }
@@ -52,8 +55,7 @@ export default function ManageStock() {
   useEffect(() => {
     const fetchMedicine = async () => {
       try {
-        const res = await fetch(`${CLIENT_BACKEND_URL}/api/medicine`);
-        const medicine = await res.json();
+        const medicine = await sellerMedicineService.getSellerMedicines();
         setMedicines(medicine?.data);
       } catch (error) {
         console.error(error);
@@ -61,7 +63,7 @@ export default function ManageStock() {
     };
 
     fetchMedicine();
-  }, [medicines]);
+  }, [relaod]);
 
   return (
     <div className="bg-gray-50 min-h-screen p-6">
