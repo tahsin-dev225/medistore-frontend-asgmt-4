@@ -33,9 +33,6 @@ export default function MedicineListPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [medicines, setMedicines] = useState<Medicine[]>([]);
 
-  // Note: Bastobe apni useEffect diye API theke data fetch korben queries pathiye
-  // Example: fetch(`/api/medicine?page=${currentPage}`)
-
   useEffect(() => {
     const fetchMedicine = async () => {
       try {
