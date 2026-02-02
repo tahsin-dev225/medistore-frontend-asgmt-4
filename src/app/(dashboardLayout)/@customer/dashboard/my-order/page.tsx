@@ -30,8 +30,6 @@ const statusColors: Record<OrderStatus, string> = {
 export default function MyOrders() {
   const [orders, setOrders] = useState<Order[]>([]);
 
-  console.log("order", orders);
-
   useEffect(() => {
     const loadOrders = async () => {
       const data = await orderStatusService.getCustomerOrder();

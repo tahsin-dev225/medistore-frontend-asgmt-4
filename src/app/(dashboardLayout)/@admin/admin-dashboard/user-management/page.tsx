@@ -55,7 +55,6 @@ export default function UserManageTable() {
     const fetchMedicine = async () => {
       try {
         const user = await userManageService.getAllUsers();
-        console.log(user);
         setUsers(user as User[]);
       } catch (error) {
         console.error(error);

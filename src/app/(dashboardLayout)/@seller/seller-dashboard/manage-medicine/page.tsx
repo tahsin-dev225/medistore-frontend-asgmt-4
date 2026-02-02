@@ -22,8 +22,6 @@ export default function ManageStock() {
   const [stockMap, setStockMap] = useState<Record<string, number>>({});
   const [relaod, setReload] = useState<number>(0);
 
-  console.log(medicines);
-
   const handleInputChange = (id: string, value: number) => {
     setStockMap((prev) => ({
       ...prev,

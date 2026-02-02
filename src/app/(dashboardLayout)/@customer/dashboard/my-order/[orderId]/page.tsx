@@ -45,7 +45,6 @@ export default function OrderDetailsPage() {
       const orderData = await orderStatusService.getOrderDetails(
         orderId as string,
       );
-      console.log(orderData);
       setOrders(orderData);
     };
 

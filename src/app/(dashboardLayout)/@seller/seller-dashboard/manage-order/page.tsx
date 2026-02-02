@@ -45,8 +45,6 @@ export default function ManageOrders() {
     }
   };
 
-  console.log("order", orders);
-
   useEffect(() => {
     const loadOrders = async () => {
       const { data, error } = await orderService.getSellerOrders();

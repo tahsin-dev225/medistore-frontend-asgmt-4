@@ -46,7 +46,6 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
     },
     onSubmit: async ({ value }) => {
       const toastId = toast.loading("Creating User.");
-      console.log(value);
       try {
         const { data, error } = await authClient.signUp.email(value);
 
@@ -73,7 +72,6 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
 
   //   console.log(data);
   // };
-  console.log(userRole);
   return (
     <Card {...props}>
       <CardHeader>

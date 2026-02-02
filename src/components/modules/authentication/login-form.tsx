@@ -41,7 +41,6 @@ export function LoginForm({ ...props }: React.ComponentProps<typeof Card>) {
     },
     onSubmit: async ({ value }) => {
       const toastId = toast.loading("Login in.....");
-      // console.log(value);
       try {
         const { data, error } = await authClient.signIn.email(value);
 
@@ -67,7 +66,6 @@ export function LoginForm({ ...props }: React.ComponentProps<typeof Card>) {
   //     callbackURL: "http://localhost:3000",
   //   });
 
-  //   console.log(data);
   // };
 
   return (

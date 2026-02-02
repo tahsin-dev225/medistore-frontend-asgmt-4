@@ -21,8 +21,6 @@ const medicines = [
 export default function HomeMedicines() {
   const [medicine, setMedicine] = useState<any>(null);
 
-  console.log(medicine);
-
   useEffect(() => {
     const fetchMedicine = async () => {
       try {
