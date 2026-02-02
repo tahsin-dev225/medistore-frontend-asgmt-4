@@ -35,4 +35,54 @@ export const getMedicineService = {
       return { data: null, error: { message: "Something Went Wrong" } };
     }
   },
+  getManageAllMedicine: async () => {
+    try {
+      // cookie access (only server-side)
+      // const cookieStore = await cookies(); 
+
+      const res = await fetch(`${CLIENT_BACKEND_URL}/api/medicine/all`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials : "include"
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to get medicine");
+      }
+
+      const medicine = await res.json();
+
+      return medicine 
+    } catch (err) {
+      console.error(err);
+      return { data: null, error: { message: "Something Went Wrong" } };
+    }
+  },
+  getMedicineById: async (id: string) => {
+    try {
+      // cookie access (only server-side)
+      // const cookieStore = await cookies(); 
+
+      const res = await fetch(`${CLIENT_BACKEND_URL}/api/medicine/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials : "include"
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to get medicine");
+      }
+
+      const medicine = await res.json();
+
+      return medicine 
+    } catch (err) {
+      console.error(err);
+      return { data: null, error: { message: "Something Went Wrong" } };
+    }
+  },
 };

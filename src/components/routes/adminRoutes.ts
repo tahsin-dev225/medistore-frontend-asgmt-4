@@ -7,19 +7,19 @@ export const AdminRoute: Route[] =[
       items: [
         {
           title: "User Management",
-          url: "/user-management",
+          url: "/admin-dashboard/user-management",
         },
         {
           title: "Manage Medicine",
-          url: "/manage-medicine",
+          url: "/admin-dashboard/manage-medicine",
         },
         {
           title: "Manage Order",
-          url: "/manage-order",
+          url: "/admin-dashboard/manage-order",
         },
         {
           title: "Manage Category",
-          url: "/manage-category",
+          url: "/admin-dashboard/manage-category",
         },
       ],
     },

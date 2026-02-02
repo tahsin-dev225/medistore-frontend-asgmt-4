@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 import { useForm } from "@tanstack/react-form";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { NextResponse } from "next/server";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -29,6 +30,7 @@ const formSchema = z.object({
 });
 
 export function LoginForm({ ...props }: React.ComponentProps<typeof Card>) {
+  const router = useRouter();
   const form = useForm({
     defaultValues: {
       email: "",
@@ -50,7 +52,7 @@ export function LoginForm({ ...props }: React.ComponentProps<typeof Card>) {
 
         toast.success("Login in successful.", { id: toastId });
         form.reset();
-        return NextResponse.redirect(new URL("/"));
+        router.push("/");
       } catch (err) {
         return toast.error("Someting went wrong, Error in login catch.", {
           id: toastId,

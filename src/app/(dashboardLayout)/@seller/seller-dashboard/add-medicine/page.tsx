@@ -25,7 +25,7 @@ type Category = {
 };
 
 export default function AddMedicineForm() {
-  const [categories, setCategories] = useState<Category>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   const form = useForm({
     defaultValues: {
@@ -57,7 +57,7 @@ export default function AddMedicineForm() {
       try {
         const res = await fetch(`${CLIENT_BACKEND_URL}/api/category`);
         const data = await res.json();
-        setCategories(data as Category);
+        setCategories(data as Category[]);
       } catch (error) {
         console.error(error);
       }

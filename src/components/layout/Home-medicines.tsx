@@ -5,6 +5,7 @@ import MedicineCard from "../modules/homePage/medicineCard";
 import { CLIENT_BACKEND_URL } from "./home-category";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { Medicine } from "@/app/(commonLayout)/medicine/page";
 
 const medicines = [
   {
@@ -42,7 +43,7 @@ export default function HomeMedicines() {
       </h2>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-        {medicine?.data?.map((medicineItem) => (
+        {medicine?.data?.map((medicineItem: Medicine) => (
           <MedicineCard key={medicineItem.id} medicine={medicineItem} />
         ))}
       </div>

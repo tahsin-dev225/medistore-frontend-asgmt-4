@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 import { useForm } from "@tanstack/react-form";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 import * as z from "zod";
@@ -31,6 +32,7 @@ const formSchema = z.object({
 
 export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
   const [userRole, setUserRole] = useState<string>("CUSTOMER");
+  const router = useRouter();
 
   const form = useForm({
     defaultValues: {
@@ -53,7 +55,8 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
           return;
         }
         form.reset();
-        return toast.success("User created successfully", { id: toastId });
+        toast.success("User created successfully", { id: toastId });
+        return router.push("/");
       } catch (err) {
         return toast.error("Someting went wrong, Error in signup catch.", {
           id: toastId,

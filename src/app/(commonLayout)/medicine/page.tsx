@@ -5,7 +5,7 @@ import { getMedicineService } from "@/components/service/get-medicine.service";
 import { useEffect, useState } from "react";
 
 // Type definition (User provide kora)
-type Medicine = {
+export type Medicine = {
   id: string;
   title: string;
   image: string;

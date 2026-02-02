@@ -11,8 +11,6 @@ export default function Navbar() {
   const [user, setUser] = useState(null);
   const [error, setError] = useState<{ message: string } | null>(null);
 
-  console.log("user", user);
-
   useEffect(() => {
     (async () => {
       const { data, error } = await getUsers();
@@ -22,7 +20,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="w-full max-w-[1500px] border-b bg-white">
+    <header className="w-full max-w-[1500px] mx-auto border-b bg-white">
       <div className=" mx-auto px-6">
         <div className="flex h-16 items-center justify-between">
           {/* LOGO */}
@@ -40,9 +38,6 @@ export default function Navbar() {
             <Link href="/" className="hover:text-emerald-500">
               Home
             </Link>
-            <Link href="/about" className="hover:text-emerald-500">
-              About Us
-            </Link>
             <Link href="/medicine" className="hover:text-emerald-500">
               Shop Medicine
             </Link>
@@ -58,7 +53,7 @@ export default function Navbar() {
             {user ? (
               <Link
                 className="px-1.5 size-8 flex  border border-black/50 rounded-full justify-center items-center"
-                href={"/profile"}
+                href={"/login"}
               >
                 <User className=" cursor-pointer hover:text-emerald-500" />
               </Link>
@@ -74,16 +69,15 @@ export default function Navbar() {
               <ShoppingCart className="w-5 h-5 cursor-pointer hover:text-emerald-500" />
             </Link>
 
-            <button
+            {/* <button
               className="px-3 py-1.5 rounded-2xl border "
               onClick={() => {
                 logOutUser();
               }}
             >
               Log out
-            </button>
+            </button> */}
           </div>
-          {/* MOBILE MENU BUTTON */}
           <button
             className="md:hidden text-gray-700"
             onClick={() => setOpen(!open)}
@@ -96,19 +90,27 @@ export default function Navbar() {
       {/* MOBILE MENU */}
       {open && (
         <div className="md:hidden border-t bg-white">
-          <div className="px-6 py-4 space-y-4 text-gray-700 font-medium">
+          <div className="px-6 py-4 flex flex-col  space-y-4 text-gray-700 font-medium">
             <Link href="/" onClick={() => setOpen(false)}>
               Home
-            </Link>
-            <Link href="/about" onClick={() => setOpen(false)}>
-              About Us
             </Link>
             <Link href="/medicines" onClick={() => setOpen(false)}>
               Shop Medicine
             </Link>
+            {user && (
+              <Link href="/dashboard" onClick={() => setOpen(false)}>
+                Dashboard
+              </Link>
+            )}
             <div className="flex items-center gap-4 pt-4 border-t">
               <ShoppingCart className="w-5 h-5" />
             </div>
+            <Link
+              className="px-1.5 size-8 flex  border border-black/50 rounded-full justify-center items-center"
+              href={"/login"}
+            >
+              <UserRoundPlus className=" cursor-pointer hover:text-emerald-500" />
+            </Link>
           </div>
         </div>
       )}

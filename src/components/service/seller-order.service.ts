@@ -42,4 +42,29 @@ export const orderService = {
       };
     }
   },
+  getAllOrders: async () => {
+    try {
+      const res = await fetch(
+        `${CLIENT_BACKEND_URL}/api/order`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include", 
+        }
+      );
+
+
+      const orders = await res.json();
+
+      return orders
+    } catch (err) {
+      console.error(err);
+      return {
+        data: null,
+        error: { message: "Something went wrong while fetching orders" },
+      };
+    }
+  },
 };

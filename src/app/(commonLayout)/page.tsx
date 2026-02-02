@@ -1,3 +1,4 @@
+import AboutPage from "@/components/layout/aboutUs";
 import Footer from "@/components/layout/Footer";
 import CategorySlider from "@/components/layout/home-category";
 import HomeMedicines from "@/components/layout/Home-medicines";
@@ -14,6 +15,7 @@ export default function Home() {
       </div>
       <CategorySlider />
       <HomeMedicines />
+      <AboutPage />
     </div>
   );
 }

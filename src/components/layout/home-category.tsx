@@ -8,8 +8,15 @@ import { env } from "@/env";
 
 export const CLIENT_BACKEND_URL = env.NEXT_PUBLIC_BACKEND_URL;
 
+interface ICategory {
+  id: string;
+  name: string;
+  image: string;
+  createdAt: string;
+}
+
 export default function CategorySlider() {
-  const [categories, setCategories] = useState<any>(null);
+  const [categories, setCategories] = useState<ICategory[]>();
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -27,9 +34,13 @@ export default function CategorySlider() {
 
   return (
     <section className="max-w-7xl mx-auto my-8 px-6 py-12">
-      <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-14">
+      <h2 className="text-2xl md:text-3xl font-bold text-center mb-5 text-gray-900 ">
         What Medicine Do You Need?
       </h2>
+      <p className="text-gray-600 mx-auto w-[94%] md:w-[85%] text-center lg:w-[55%] mb-14 leading-relaxed">
+        From everyday essentials to specialised medicines, MediStore brings
+        everything together in one easy-to-use platform.
+      </p>
 
       <Swiper
         spaceBetween={20}
