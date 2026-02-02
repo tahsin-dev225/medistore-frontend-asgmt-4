@@ -37,7 +37,6 @@ export default function MedicineListPage() {
     const fetchMedicine = async () => {
       try {
         const medicine = await getMedicineService.getMedicine();
-        console.log(medicine);
         setMedicines(medicine?.data);
         setApiResponse(medicine);
       } catch (error) {

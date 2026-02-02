@@ -43,7 +43,6 @@ export default function MedicineDetailsPage() {
   useEffect(() => {
     (async () => {
       const data = await getMedicineService.getMedicineById(id as string);
-      console.log(data);
       setMedicine(data);
     })();
 

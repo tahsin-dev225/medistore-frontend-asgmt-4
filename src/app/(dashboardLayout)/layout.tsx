@@ -26,7 +26,6 @@ export default async function DashboardLayout({
   seller: React.ReactNode;
 }) {
   const { data } = await userService.getSession();
-  console.log(data);
 
   return (
     <SidebarProvider>

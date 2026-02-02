@@ -24,7 +24,6 @@ export default function ManageOrders() {
     const fetchMedicine = async () => {
       try {
         const order = await orderService.getAllOrders();
-        console.log(order);
         setOrders(order);
       } catch (error) {
         console.error(error);

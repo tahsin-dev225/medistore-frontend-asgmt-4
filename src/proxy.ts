@@ -12,7 +12,6 @@ export const proxy = async (request: NextRequest) => {
   }
 
   const role = data.user.role;
-  console.log('role', role, "roless", Roles.admin);
 
   // Customer
   if (role === Roles.customer) {
