@@ -57,7 +57,7 @@ export default function Navbar() {
           </Link>
 
           {/* DESKTOP MENU */}
-          <nav className="hidden md:flex items-center gap-8 text-gray-600 font-medium">
+          <nav className="hidden md:flex items-center gap-8 text-[15px] text-gray-600 font-medium">
             <Link href="/" className="hover:text-emerald-500">
               Home
             </Link>
