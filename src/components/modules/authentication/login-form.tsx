@@ -51,7 +51,7 @@ export function LoginForm({ ...props }: React.ComponentProps<typeof Card>) {
 
         toast.success("Login in successful.", { id: toastId });
         form.reset();
-        router.push("/");
+        router.push("/dashboard");
       } catch (err) {
         return toast.error("Someting went wrong, Error in login catch.", {
           id: toastId,

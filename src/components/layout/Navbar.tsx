@@ -4,17 +4,40 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Menu, X, ShoppingCart, User, UserRoundPlus } from "lucide-react";
 import { getUsers } from "@/actions/user.action";
-import { logOutUser } from "@/actions/logout.action";
+// import { logOutUser } from "@/actions/logout.action";
+import { authClient } from "@/lib/auth-client";
+
+export type UserRole = "CUSTOMER" | "SELLER" | "ADMIN";
+export type UserStatus = "ACTIVE" | "INACTIVE" | "BANNED";
+
+export interface IUser {
+  id: string;
+  name: string;
+  email: string;
+  emailVerified: boolean;
+  image: string | null;
+  role: UserRole;
+  status: UserStatus;
+  createdAt: string; // ISO Date string
+  updatedAt: string; // ISO Date string
+}
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<IUser>();
   const [error, setError] = useState<{ message: string } | null>(null);
+
+  const logout = async () => {
+    await authClient.signOut();
+    window.location.href = "/login";
+  };
+
+  console.log(user);
 
   useEffect(() => {
     (async () => {
       const { data, error } = await getUsers();
-      setUser(data.user);
+      setUser(data?.user);
       setError(error);
     })();
   }, []);
@@ -65,18 +88,22 @@ export default function Navbar() {
                 <UserRoundPlus className=" cursor-pointer hover:text-emerald-500" />
               </Link>
             )}
-            <Link href={"/cart"}>
-              <ShoppingCart className="w-5 h-5 cursor-pointer hover:text-emerald-500" />
-            </Link>
+            {user?.role === "CUSTOMER" && (
+              <Link href={"/cart"}>
+                <ShoppingCart className="w-5 h-5 cursor-pointer hover:text-emerald-500" />
+              </Link>
+            )}
 
-            {/* <button
-              className="px-3 py-1.5 rounded-2xl border "
-              onClick={() => {
-                logOutUser();
-              }}
-            >
-              Log out
-            </button> */}
+            {user && (
+              <button
+                className="px-3 py-1.5 rounded-2xl border "
+                onClick={() => {
+                  logout();
+                }}
+              >
+                Log out
+              </button>
+            )}
           </div>
           <button
             className="md:hidden text-gray-700"

@@ -55,7 +55,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
         }
         form.reset();
         toast.success("User created successfully", { id: toastId });
-        return router.push("/");
+        return router.push("/dashboard");
       } catch (err) {
         return toast.error("Someting went wrong, Error in signup catch.", {
           id: toastId,

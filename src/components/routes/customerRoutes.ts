@@ -8,7 +8,11 @@ export const CustomerRoute: Route[] =[
         {
           title: "My Order",
           url: "/dashboard/my-order",
-        }
+        },
+        {
+          title: "My Profile",
+          url: "/dashboard/my-profile",
+        },
       ],
     },
   ]

@@ -37,11 +37,11 @@ export default function HomeMedicines() {
   return (
     <section className="max-w-7xl mx-auto px-6 py-14">
       <h2 className="text-2xl md:text-3xl lg:text-4xl  text-center mx-auto font-bold text-gray-900 mb-14">
-        Popular Medicines
+        Leatest Medicines
       </h2>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-        {medicine?.data?.map((medicineItem: Medicine) => (
+        {medicine?.data?.slice(0, 8)?.map((medicineItem: Medicine) => (
           <MedicineCard key={medicineItem.id} medicine={medicineItem} />
         ))}
       </div>

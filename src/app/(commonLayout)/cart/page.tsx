@@ -37,7 +37,6 @@ export default function CartPage() {
     const fetchCart = async () => {
       try {
         const cartData = await cartService.getCartItems();
-        console.log(cartData?.data?.data?.items);
         setCarts(cartData?.data?.data?.items);
       } catch (error) {
         console.error(error);
